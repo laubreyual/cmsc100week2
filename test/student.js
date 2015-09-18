@@ -33,14 +33,18 @@ describe('student', function(){
             request(url)
                 .post('/students')
                 .send({
-                    'studNo':'2015-12345',
-                    'name': 'Kyuti Patuti',
-                    'bdate': '1998-01-31'
+                    'studNo':'2005-12345',
+                    'name': 'Please Work',
+                    'bdate': '1996-11-01'
                 })
                 .end(function(err, res){
                     if(err) throw err;
                     res.should.have.status(200);
-                    res.body.should.be.an.instanceOf(Object);
+                    res.body.should.be.an.instanceOf(Object).and.have.properties({
+                    	'studNo': '2005-12345',
+                    	'name': 'Please Work',
+                    	'bdate': '1996-11-01'
+					});
                     done();
                 })
         });
