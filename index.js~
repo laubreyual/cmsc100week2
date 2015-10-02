@@ -11,7 +11,7 @@ var server = app.listen(5000, function() {
 app.get('/', function(req, res){
     res.send('Hello World!');
 });
-*/
+
 
 app.route('/students')
     .get(function(req, res){
@@ -20,3 +20,8 @@ app.route('/students')
         res.send('Add a student'); })
     .put(function(req, res){
         res.send('Update a student'); });
+*/
+
+app.use(require('body-parser')());
+app.use(require('method-override')());
+app.use(require(__dirname + '/config/router')(express.Router()));
